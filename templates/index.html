@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Black Friday Purchase Prediction</title>
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* Container Styling */
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+            border: 1px solid #e1e1e1;
+        }
+
+        /* Heading Styling */
+        h2 {
+            font-size: 24px;
+            color: #4a4a4a;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Form Group Styling */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        /* Input and Select Styling */
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            color: #333;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        select:focus, input:focus {
+            border-color: #5c9f6e;
+            outline: none;
+        }
+
+        /* Button Styling */
+        button {
+            background-color: #5c9f6e;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4c8d5c;
+        }
+
+        /* Prediction Text Styling */
+        .prediction {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+            color: #4c8d5c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Black Friday Sales Prediction</h2>
+        <form method="POST" action="/predict">
+            <div class="form-group">
+                <label for="Gender">Gender</label>
+                <select name="Gender" id="Gender">
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="Age">Age</label>
+                <select name="Age" id="Age">
+                    <option value="0-17">0-17</option>
+                    <option value="18-25">18-25</option>
+                    <option value="26-35">26-35</option>
+                    <option value="36-45">36-45</option>
+                    <option value="46-50">46-50</option>
+                    <option value="51-55">51-55</option>
+                    <option value="55+">55+</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="Occupation">Occupation</label>
+                <input type="number" name="Occupation" id="Occupation" required>
+            </div>
+
+            <div class="form-group">
+                <label for="City_Category">City Category</label>
+                <select name="City_Category" id="City_Category">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="Stay_In_Current_City_Years">Stay In Current City Years</label>
+                <select name="Stay_In_Current_City_Years" id="Stay_In_Current_City_Years">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4+">4+</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="Marital_Status">Marital Status</label>
+                <select name="Marital_Status" id="Marital_Status">
+                    <option value="0">Unmarried</option>
+                    <option value="1">Married</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="Product_Category_1">Product Category 1</label>
+                <input type="number" name="Product_Category_1" id="Product_Category_1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Product_Category_2">Product Category 2 (leave blank if NA)</label>
+                <input type="number" name="Product_Category_2" id="Product_Category_2">
+            </div>
+
+            <div class="form-group">
+                <label for="Product_Category_3">Product Category 3 (leave blank if NA)</label>
+                <input type="number" name="Product_Category_3" id="Product_Category_3">
+            </div>
+
+            <button type="submit">Predict Purchase</button>
+        </form>
+
+        {% if prediction_text %}
+            <div class="prediction">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
